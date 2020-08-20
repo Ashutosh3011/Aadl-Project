@@ -1,2 +1,7 @@
 Hi shubham
+<<<<<<< HEAD
 After 1st push of ashh
+=======
+
+1 commit trial
+>>>>>>> 333502b1e33a36f729c13838b172dad293faaf55

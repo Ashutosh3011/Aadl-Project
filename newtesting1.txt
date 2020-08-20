@@ -1,6 +1,16 @@
 Hi shubham
+<<<<<<< HEAD
+After 1st push of ashh
+=======
 
 1 commit trial
+<<<<<<< HEAD
 
 
 1 pull trial shubham sawant
+=======
+>>>>>>> 333502b1e33a36f729c13838b172dad293faaf55
+>>>>>>> dcd7811f39bf683f698cd95bb88a636db707f8e4
+
+
+hi ashutosh kaisa hai thisk se merge karna chutitye

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
+import 'camera_screen.dart';
 
 void main() => runApp(new MyApp());
 
@@ -30,7 +32,7 @@ class LoginPageState extends State<LoginPage>
       backgroundColor: Colors.grey,
       body: SingleChildScrollView(
           child: Container(
-        padding: const EdgeInsets.all(40.0),
+        padding: const EdgeInsets.only(top: 50),
         child: Form(
           autovalidate: true,
           child: Column(
@@ -60,8 +62,12 @@ class LoginPageState extends State<LoginPage>
                 color: Colors.green,
                 splashColor: Colors.blue,
                 textColor: Colors.white,
-                child: Icon(Icons.login),
+                // child: Icon(Icons.login),
                 onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CameraScreen()),
+                  );
                   print("Logged in");
                 },
               )
@@ -72,3 +78,28 @@ class LoginPageState extends State<LoginPage>
     );
   }
 }
+
+// class CameraScreen extends StatefulWidget {
+//   @override
+//   _CameraScreenState createState() => _CameraScreenState();
+// }
+
+// class _CameraScreenState extends State<CameraScreen> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("Camera Screen"),
+//       ),
+//       body: Container(
+//         alignment: Alignment.center,
+//         child: IconButton(
+//             icon: Icon(
+//               Icons.ac_unit,
+//               size: 50,
+//             ),
+//             onPressed: (){})),
+//     );
+//   }
+// }
+// https://github.com/devplanet-dp/flutter_camera_app

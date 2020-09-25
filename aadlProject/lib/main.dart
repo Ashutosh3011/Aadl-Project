@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'camera_screen.dart';
+import 'database.dart';
 
 void main() => runApp(new MyApp());
 
@@ -64,6 +65,8 @@ class LoginPageState extends State<LoginPage>
                 textColor: Colors.white,
                 // child: Icon(Icons.login),
                 onPressed: () {
+                  String mobile = "1234567890";
+                  PostServices.insertData(mobile);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => CameraScreen()),

@@ -6,6 +6,7 @@ import 'package:aadlProject/home.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CameraScreen extends StatefulWidget {
   @override
@@ -14,12 +15,25 @@ class CameraScreen extends StatefulWidget {
 
 class _CameraScreenState extends State {
   var image;
-  String img64;
+  String img64 = "";
+  SharedPreferences _sharedPreferences;
   final picker = ImagePicker();
   final name = TextEditingController();
   final meetingWith = TextEditingController();
   final timeToMeet = TextEditingController();
   final reason = TextEditingController();
+
+  @override
+  void initState() {
+    initializeSharedPref();
+    super.initState();
+  }
+
+  void initializeSharedPref() async {
+    // SharedPreferences.setMockInitialValues({});
+    _sharedPreferences = await SharedPreferences.getInstance();
+    img64 = _sharedPreferences.getString('img64') ?? null;
+  }
 
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
@@ -31,6 +45,7 @@ class _CameraScreenState extends State {
         img64 = base64Encode(bytes);
         // final bytes = await Io.File(image).readAsBytes();
         // String base64Encode(List<int> bytes) => base64.encode(bytes);
+        _sharedPreferences.setString('img64', img64);
         print(img64);
       } else {
         print('No image selected.');

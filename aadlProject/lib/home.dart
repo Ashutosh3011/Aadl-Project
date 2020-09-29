@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PreviewScreen extends StatefulWidget {
   // final String img64;
@@ -15,13 +16,33 @@ class PreviewScreen extends StatefulWidget {
   final String name;
   const PreviewScreen(
       this.name, this.meetingWith, this.timeToMeet, this.reason);
+
   @override
   _PreviewScreenState createState() => _PreviewScreenState();
 }
 
 class _PreviewScreenState extends State<PreviewScreen> {
+  String img64 = "";
+  var img;
+  SharedPreferences _sharedPreferences;
+  @override
+  void initState() {
+    initializeSharedPref();
+    super.initState();
+    print("object");
+  }
+
+  void initializeSharedPref() async {
+    _sharedPreferences = await SharedPreferences.getInstance();
+    img64 = _sharedPreferences.getString('img64') ?? null;
+    // print(img64);
+    img = base64Decode(img64);
+  }
+
   @override
   Widget build(BuildContext context) {
+    initializeSharedPref();
+    print("//////////////////////////////////////////////////" + img64);
     // final PreviewScreen args = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
@@ -32,7 +53,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
         alignment: Alignment.topLeft,
         child: Column(
           children: <Widget>[
-          
+            Image.memory(img, height: 300, width: 300),
             Text(
               "Name of Visitor : " + widget.name,
               style: TextStyle(fontSize: 20),

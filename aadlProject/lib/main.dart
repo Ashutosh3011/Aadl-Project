@@ -1,7 +1,7 @@
+import 'package:aadlProject/database.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:camera/camera.dart';
 import 'camera_screen.dart';
-import 'database.dart';
 
 void main() => runApp(new MyApp());
 
@@ -29,26 +29,39 @@ class LoginPageState extends State<LoginPage>
 
   @override
   Widget build(BuildContext context) {
+    final mobile = TextEditingController();
+    final password = TextEditingController();
     return Scaffold(
-      backgroundColor: Colors.grey,
       body: SingleChildScrollView(
           child: Container(
-        padding: const EdgeInsets.only(top: 50),
+        padding: const EdgeInsets.all(50),
         child: Form(
           autovalidate: true,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
+              Text(
+                "Login",
+                style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+              ),
               SizedBox(
                 height: 50,
               ),
-              TextFormField(
+              TextField(
+                controller: mobile,
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                    labelText: "Enter Email", fillColor: Colors.white),
-                keyboardType: TextInputType.emailAddress,
+                  border: OutlineInputBorder(),
+                  labelText: 'Mobile Number',
+                ),
+              ),
+              SizedBox(
+                height: 15,
               ),
               TextFormField(
+                controller: password,
                 decoration: InputDecoration(
+                  border: OutlineInputBorder(),
                   labelText: "Enter Password",
                 ),
                 obscureText: true,
@@ -63,14 +76,34 @@ class LoginPageState extends State<LoginPage>
                 color: Colors.green,
                 splashColor: Colors.blue,
                 textColor: Colors.white,
-                // child: Icon(Icons.login),
+                child: Icon(Icons.forward),
                 onPressed: () {
-                  String mobile = "1234567890";
-                  PostServices.insertData(mobile);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => CameraScreen()),
-                  );
+                  print("Mobile Number : " + mobile.text);
+                  print("Password : " + password.text);
+                  if (mobile.text.length != 10) {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) => CupertinoAlertDialog(
+                              title: new Text("ALERT!!"),
+                              content: new Text(
+                                  "Please enter a valid mobile number and password"),
+                              actions: <Widget>[
+                                CupertinoDialogAction(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text("ok"),
+                                )
+                              ],
+                            ));
+                  } else {
+                    PostServices.insertData(mobile.text, password.text);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CameraScreen()),
+                    );
+                  }
+
                   print("Logged in");
                 },
               )
@@ -81,28 +114,3 @@ class LoginPageState extends State<LoginPage>
     );
   }
 }
-
-// class CameraScreen extends StatefulWidget {
-//   @override
-//   _CameraScreenState createState() => _CameraScreenState();
-// }
-
-// class _CameraScreenState extends State<CameraScreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Camera Screen"),
-//       ),
-//       body: Container(
-//         alignment: Alignment.center,
-//         child: IconButton(
-//             icon: Icon(
-//               Icons.ac_unit,
-//               size: 50,
-//             ),
-//             onPressed: (){})),
-//     );
-//   }
-// }
-// https://github.com/devplanet-dp/flutter_camera_app

@@ -1,3 +1,4 @@
+import 'package:aadlProject/Gmaps.dart';
 import 'package:aadlProject/database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -98,6 +99,7 @@ class LoginPageState extends State<LoginPage>
                             ));
                   } else {
                     PostServices.insertData(mobile.text, password.text);
+
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => CameraScreen()),

@@ -105,7 +105,7 @@ class _CameraScreenState extends State {
                 // obscureText: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Who to meet?',
+                  labelText: 'Time',
                 ),
               ),
               SizedBox(
@@ -116,7 +116,7 @@ class _CameraScreenState extends State {
                 // obscureText: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'When to Meet?',
+                  labelText: 'Date',
                 ),
               ),
               SizedBox(
@@ -127,7 +127,7 @@ class _CameraScreenState extends State {
                 // obscureText: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Reason to meet',
+                  labelText: 'Number Of People',
                 ),
               )
             ],

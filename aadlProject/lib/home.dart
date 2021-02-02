@@ -22,7 +22,7 @@ class PreviewScreen extends StatefulWidget {
 }
 
 class _PreviewScreenState extends State<PreviewScreen> {
-  String img64 = "";
+  String img64 = "ab";
   var img;
   SharedPreferences _sharedPreferences;
   @override
@@ -55,19 +55,19 @@ class _PreviewScreenState extends State<PreviewScreen> {
           children: <Widget>[
             Image.memory(img, height: 300, width: 300),
             Text(
-              "Name of Visitor : " + widget.name,
+              "Name : " + widget.name,
               style: TextStyle(fontSize: 20),
             ),
             Text(
-              "Who to Meet : " + widget.meetingWith,
+              "Time : " + widget.meetingWith,
               style: TextStyle(fontSize: 20),
             ),
             Text(
-              "Meeting time: " + widget.timeToMeet,
+              "Date : " + widget.timeToMeet,
               style: TextStyle(fontSize: 20),
             ),
             Text(
-              "Reason : " + widget.reason,
+              "Number of People : " + widget.reason,
               style: TextStyle(fontSize: 20),
             ),
           ],
